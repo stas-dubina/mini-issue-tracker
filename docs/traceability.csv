@@ -1,0 +1,35 @@
+requirement_id,user_story_id,acceptance_criterion_id,component_or_api,future_test
+FR-01,US-01,AC-01-01,POST /issues,test_create_issue_trims_title_and_sets_defaults
+FR-01,US-01,AC-01-02,POST /issues,test_create_issue_rejects_short_trimmed_title
+FR-01,US-01,AC-01-03,POST /issues,test_create_title_unicode_length_boundaries
+FR-01,US-01,AC-01-04,POST /issues,test_description_length_boundaries_and_null
+FR-02,US-02,AC-02-01,GET /issues,test_filters_separately_and_together_in_creation_order
+FR-02,US-02,AC-02-02,GET /issues,test_valid_filters_without_matches_return_empty_list
+FR-02,US-02,AC-02-03,GET /issues/{id},test_get_issue_by_id_and_report_missing_issue
+FR-02,US-02,AC-02-04,GET /issues,test_filters_reject_invalid_unknown_and_duplicate_query
+FR-02,US-02,AC-02-05,GET /issues/{id},test_invalid_path_id_returns_422
+FR-02,US-02,AC-02-06,GET /issues,test_equal_issue_timestamps_order_by_id
+FR-03,US-03,AC-03-01,PATCH /issues/{id},test_patch_title_preserves_omitted_fields
+FR-03,US-03,AC-03-02,PATCH /issues/{id},test_patch_with_mixed_validity_is_atomic
+FR-03,US-03,AC-03-03,PATCH /issues/{id},test_empty_patch_returns_422_without_mutation
+FR-03,US-03,AC-03-04,PATCH /issues/{id},test_closed_issue_rejects_edit_without_mutation
+FR-03,US-03,AC-03-05,PATCH /issues/{id},test_patch_rejects_null_description_and_forbidden_status
+FR-03,US-03,AC-03-06,PATCH /issues/{id},test_patch_unknown_system_null_fields_and_empty_description
+FR-04,US-04,AC-04-01,PATCH /issues/{id}/status,test_allowed_status_transitions_persist_target
+FR-04,US-04,AC-04-02,PATCH /issues/{id}/status,test_closed_cannot_reopen
+FR-04,US-04,AC-04-03,PATCH /issues/{id}/status,test_same_status_returns_success_without_mutation
+FR-04,US-04,AC-04-04,PATCH /issues/{id}/status,test_other_forbidden_status_transitions_reject_without_mutation
+FR-04,US-04,AC-04-05,PATCH /issues/{id}/status,test_status_body_validation_without_mutation
+FR-05,US-05,AC-05-01,PATCH /issues/{id},test_assign_reassign_and_explicit_null_unassign
+FR-05,US-05,AC-05-02,PATCH /issues/{id},test_unknown_assignee_does_not_change_assignment
+FR-05,US-05,AC-05-03,PATCH /issues/{id},test_omitted_assignee_preserves_assignment
+FR-05,US-05,AC-05-04,PATCH /issues/{id},test_closed_issue_rejects_reassign_and_unassign
+FR-06,US-06,AC-06-01,POST and GET /issues/{id}/comments,test_closed_issue_supports_comments_in_creation_order
+FR-06,US-06,AC-06-02,POST /issues/{id}/comments,test_whitespace_only_comment_returns_422
+FR-06,US-06,AC-06-03,POST /issues/{id}/comments,test_raw_comment_length_boundary_and_preserved_text
+FR-06,US-06,AC-06-04,POST /issues/{id}/comments,test_comment_rejects_unknown_author_and_missing_issue
+FR-06,US-06,AC-06-05,GET /issues/{id}/comments,test_empty_comments_and_missing_issue
+FR-06,US-06,AC-06-06,GET /issues/{id}/comments,test_equal_comment_timestamps_order_by_id_and_preserve_text
+FR-07,US-07,AC-07-01,SQLite,test_issue_and_comment_survive_restart
+FR-07,US-07,AC-07-02,POST /issues,test_invalid_priority_creates_no_record_after_restart
+FR-07,US-07,AC-07-03,SQLite,test_atomic_patch_failure_survives_restart
